@@ -3,7 +3,6 @@ import { RouterLink, RouterView } from "vue-router";
 import { routes } from "./router";
 
 const dynamicRoutes = routes.filter(route => {
-  console.log(route.name);
   if (!route.name.startsWith("Info") && !route.name.startsWith("Compte") && !route.name.startsWith("Connexion") ) {
     return route.name;
   }
@@ -42,7 +41,7 @@ const dynamicRoutes = routes.filter(route => {
 nav {
   display: flex;
   justify-content: space-between;
-  padding: 1em 10em 0 10em
+  padding: 1em 10em 2em 10em
 }
 
 .link-nav-menu {
