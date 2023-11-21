@@ -1,21 +1,60 @@
 <script setup>
-    import { ref } from 'vue'
+import {onMounted, ref} from 'vue'
+import axios from 'axios'
+import {baseURL} from '../config.js'
+import {RouterLink} from "vue-router";
 
-    defineProps({
-    msg: String,
-})
+let isLoading = ref(true);
+let movies = ref([]);
+let actors = ref([]);
 
-    const count = ref(0)
+onMounted(async () => {
+  try {
+    const response = await axios.get(`${baseURL}movies?page=1&itemsPerPage=4&order[releaseDate]=desc`);
+    movies.value = response.data;
+    isLoading.value = false;
+    console.log("movies", movies);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+onMounted(async () => {
+  try {
+    const response = await axios.get(`${baseURL}actors?page=1`);
+    actors.value = response.data;
+    isLoading.value = false;
+    console.log("actors", actors);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 </script>
 
 <template>
-  <h1>Home</h1>
-  <h1>Home</h1>
-  <h1>Home</h1>
+
+  <p class="divider">FILMS</p>
+  <div class="listing">
+    <div v-if="isLoading" class="loading"><img src="../assets/loader.gif"></div>
+    <div class="cases">
+      <router-link class="listing-link case" v-for="movie in movies['hydra:member']" :key="movie.id" to="/InfoMovie">
+        {{ movie.title }}
+      </router-link>
+    </div>
+  </div>
+  <p class="divider">ACTEURS</p>
+  <div class="listing">
+    <div v-if="isLoading" class="loading"><img src="../assets/loader.gif"></div>
+    <div class="cases">
+      <router-link class="listing-link case" v-for="actor in actors['hydra:member']" :key="actor.id" to="/InfoActor">
+        {{ actor.firstName }} {{ actor.lastName }}
+      </router-link>
+    </div>
+  </div>
+
 </template>
 
 <style scoped>
-    .read-the-docs {
-    color: #888;
-}
+
 </style>
