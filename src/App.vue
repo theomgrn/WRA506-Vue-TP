@@ -43,6 +43,14 @@ nav {
   justify-content: space-between;
   padding: 1em 10em 2em 10em
 }
+@media screen and (max-width: 1024px) {
+  nav {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 1em;
+  }
+}
 
 .link-nav-menu {
   text-decoration: none;
