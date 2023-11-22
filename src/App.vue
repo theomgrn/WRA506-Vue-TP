@@ -1,11 +1,35 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
-import { routes } from "./router";
+import { ref, onMounted, onUnmounted, watchEffect } from 'vue';
+import { RouterLink, RouterView } from 'vue-router';
+import { routes } from './router';
 
 const dynamicRoutes = routes.filter(route => {
-  if (!route.name.startsWith("Info") && !route.name.startsWith("Compte") && !route.name.startsWith("Connexion") ) {
+  if (!route.name.startsWith('Info') && !route.name.startsWith('Compte') && !route.name.startsWith('Connexion')) {
     return route.name;
   }
+});
+
+const isAuthenticated = ref(false);
+
+const checkToken = () => {
+  const token = localStorage.getItem('userToken');
+  isAuthenticated.value = !!token;
+};
+
+const logout = () => {
+  localStorage.removeItem('userToken');
+  isAuthenticated.value = false;
+};
+
+onMounted(() => {
+  checkToken();
+  watchEffect(() => {
+    checkToken();
+  });
+});
+
+onUnmounted(() => {
+  // Nettoyer les ressources lors du démontage du composant si nécessaire
 });
 </script>
 
@@ -13,8 +37,9 @@ const dynamicRoutes = routes.filter(route => {
   <header>
     <div class="wrapper">
       <div class="login">
-        <router-link class="link-nav-menu" to="/login">Login</router-link>
-        <router-link class="link-nav-menu" to="/account">Compte</router-link>
+        <router-link v-if="!isAuthenticated" class="link-nav-menu" to="/login" :key="1">Login</router-link>
+        <router-link v-if="isAuthenticated" @click="logout" class="link-nav-menu" to="/" :key="2">Logout</router-link>
+        <router-link class="link-nav-menu" to="/account" :key="3">Compte</router-link>
       </div>
       <nav>
         <router-link
@@ -30,6 +55,7 @@ const dynamicRoutes = routes.filter(route => {
   </header>
   <RouterView />
 </template>
+
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');
