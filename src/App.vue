@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watchEffect } from 'vue';
-import { RouterLink, RouterView } from 'vue-router';
+import { ref, onMounted, watchEffect } from 'vue';
+import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router';
 import { routes } from './router';
 
 const dynamicRoutes = routes.filter(route => {
@@ -10,15 +10,19 @@ const dynamicRoutes = routes.filter(route => {
 });
 
 const isAuthenticated = ref(false);
+const user = ref(localStorage.getItem('userMail') || '');
 
 const checkToken = () => {
   const token = localStorage.getItem('userToken');
   isAuthenticated.value = !!token;
+  user.value = localStorage.getItem('userMail') || '';
 };
 
 const logout = () => {
   localStorage.removeItem('userToken');
+  localStorage.removeItem('userMail');
   isAuthenticated.value = false;
+  user.value = '';
 };
 
 onMounted(() => {
@@ -28,8 +32,11 @@ onMounted(() => {
   });
 });
 
-onUnmounted(() => {
-  // Nettoyer les ressources lors du démontage du composant si nécessaire
+const router = useRouter();
+
+router.beforeEach((to, from, next) => {
+  checkToken();
+  next();
 });
 </script>
 
@@ -37,9 +44,9 @@ onUnmounted(() => {
   <header>
     <div class="wrapper">
       <div class="login">
-        <router-link v-if="!isAuthenticated" class="link-nav-menu" to="/login" :key="1">Login</router-link>
-        <router-link v-if="isAuthenticated" @click="logout" class="link-nav-menu" to="/" :key="2">Logout</router-link>
-        <router-link class="link-nav-menu" to="/account" :key="3">Compte</router-link>
+        <router-link v-if="!isAuthenticated" class="link-nav-menu" to="/login">Login</router-link>
+        <router-link v-if="isAuthenticated" @click="logout" class="link-nav-menu" to="/">Logout</router-link>
+        <router-link v-if="isAuthenticated" class="link-nav-menu" to="/account">{{user}}</router-link>
       </div>
       <nav>
         <router-link
@@ -55,7 +62,6 @@ onUnmounted(() => {
   </header>
   <RouterView />
 </template>
-
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');

@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios';
 import router from "../router/index.js";
+import {useToast} from 'vue-toast-notification';
 
 export default {
   data: vm => ({
@@ -20,8 +21,10 @@ export default {
         const response = await this.login(this.userName, this.password);
         const token = response.data.token;
         localStorage.setItem('userToken', token);
+        localStorage.setItem('userMail', this.userName);
         await router.push({path: '/'});
-        alert('Vous êtes connecté !');
+        let toast = useToast();
+        toast.success('Vous êtes connécté !');
       } catch (error) {
         console.error('Error:', error);
       } finally {
