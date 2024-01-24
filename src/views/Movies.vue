@@ -1,19 +1,37 @@
 <script setup>
-import { ref } from 'vue'
+import {onMounted, ref} from 'vue'
+import axios from 'axios'
+import {baseURL} from '../config.js'
+import {RouterLink} from "vue-router";
 
-defineProps({
-  msg: String,
-})
+let isLoading = ref(true);
+let movies = ref([]);
 
-const count = ref(0)
+onMounted(async () => {
+  try {
+    const response = await axios.get(`${baseURL}movies?page=1`);
+    movies.value = response.data;
+    isLoading.value = false;
+   } catch (error) {
+    console.error(error);
+  }
+});
+
 </script>
 
 <template>
-  <h1>Movies</h1>
+
+  <div class="listing">
+    <div v-if="isLoading" class="loading"><img src="../assets/loader.gif"></div>
+    <div class="cases">
+      <router-link class="listing-link case" v-for="movie in movies['hydra:member']" :key="movie.id" :to="{ name: 'InfoFilm', params: { idFilm: movie.id } }">
+        {{ movie.title }}
+      </router-link>
+    </div>
+  </div>
+
 </template>
 
 <style scoped>
-.read-the-docs {
-  color: #888;
-}
+
 </style>

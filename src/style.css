@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Lilita+One&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Karla', sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -25,7 +27,6 @@ button {
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
-  font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
@@ -57,8 +58,11 @@ button:focus-visible {
 }
 .cases {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   width: 100%;
+  padding-bottom: 2em;
+  padding-top: 2em;
 }
 
 .case {
@@ -67,13 +71,12 @@ button:focus-visible {
   align-items: center;
   text-align: center;
   margin: 10px;
-  width: 100px;
-  padding: 10px;
+  padding: 20px;
   background-color: black;
 }
 
 .case:hover {
-  background-color: #d2b735;
+  background-color: navajowhite;
   color: black;
   transition: 500ms;
 }
@@ -82,10 +85,10 @@ button:focus-visible {
   text-decoration: none;
   color: white;
   transition: color 0.3s ease-in-out; /* Animation de transition de la couleur */
+  border-radius: 10px;
 }
 
 .divider {
-  font-family: "Roboto Light", sans-serif;
   color: #fff;
   font-size: 3vh;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, .45);
@@ -102,12 +105,12 @@ button:focus-visible {
   }
 
   &::before {
-    background: linear-gradient(to right, rgba(240, 240, 240, 0), #d2b735);
+    background: linear-gradient(to right, rgba(240, 240, 240, 0), white);
     margin-right: 4vh;
   }
 
   &::after {
-    background: linear-gradient(to left, rgba(240, 240, 240, 0), #d2b735);
+    background: linear-gradient(to left, rgba(240, 240, 240, 0), white);
     margin-left: 4vh;
   }
 }
