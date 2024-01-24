@@ -1,11 +1,42 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
-import { routes } from "./router";
+import { ref, onMounted, watchEffect } from 'vue';
+import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router';
+import { routes } from './router';
 
 const dynamicRoutes = routes.filter(route => {
-  if (!route.name.startsWith("Info") && !route.name.startsWith("Compte") && !route.name.startsWith("Connexion") ) {
+  if (!route.name.startsWith('Info') && !route.name.startsWith('Compte') && !route.name.startsWith('Connexion')) {
     return route.name;
   }
+});
+
+const isAuthenticated = ref(false);
+const user = ref(localStorage.getItem('userMail') || '');
+
+const checkToken = () => {
+  const token = localStorage.getItem('userToken');
+  isAuthenticated.value = !!token;
+  user.value = localStorage.getItem('userMail') || '';
+};
+
+const logout = () => {
+  localStorage.removeItem('userToken');
+  localStorage.removeItem('userMail');
+  isAuthenticated.value = false;
+  user.value = '';
+};
+
+onMounted(() => {
+  checkToken();
+  watchEffect(() => {
+    checkToken();
+  });
+});
+
+const router = useRouter();
+
+router.beforeEach((to, from, next) => {
+  checkToken();
+  next();
 });
 </script>
 
@@ -13,8 +44,9 @@ const dynamicRoutes = routes.filter(route => {
   <header>
     <div class="wrapper">
       <div class="login">
-        <router-link class="link-nav-menu" to="/login">Login</router-link>
-        <router-link class="link-nav-menu" to="/account">Compte</router-link>
+        <router-link v-if="!isAuthenticated" class="link-nav-menu" to="/login">Login</router-link>
+        <router-link v-if="isAuthenticated" @click="logout" class="link-nav-menu" to="/">Logout</router-link>
+        <router-link v-if="isAuthenticated" class="link-nav-menu" to="/account">{{user}}</router-link>
       </div>
       <nav>
         <router-link
