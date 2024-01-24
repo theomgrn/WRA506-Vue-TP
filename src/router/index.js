@@ -32,13 +32,13 @@ export const routes = [
         component: () => import('../views/Account.vue')
     },
     {
-        path: '/info/:idFilm',
+        path: '/infoFilm/:idFilm',
         name: 'InfoFilm',
         component: () => import('../components/InfoMovie.vue')
     },
     {
-        path: '/info/:idActor',
-        name: 'InfoActeur',
+        path: '/infoActor/:idActor',
+        name: 'InfoActor',
         component: () => import('../components/InfoActor.vue')
     },
 ]
