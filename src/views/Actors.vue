@@ -22,9 +22,16 @@ onMounted(async () => {
 <template>
 
   <div class="listing">
-    <div v-if="isLoading" class="loading"><img src="../assets/loader.gif"></div>
+    <div class="loading" v-if="isLoading">
+      <v-progress-circular
+          v-if="isLoading"
+          indeterminate
+          color="#FFDEADFF"
+      ></v-progress-circular>
+    </div>
     <div class="cases">
-      <router-link class="listing-link case" v-for="actor in actors['hydra:member']" :key="actor.id" :to="{ name: 'InfoActor', params: { idActor: actor.id } }">
+      <router-link class="listing-link case" v-for="actor in actors['hydra:member']" :key="actor.id"
+                   :to="{ name: 'InfoActor', params: { idActor: actor.id } }">
         {{ actor.firstName }} {{ actor.lastName }}
       </router-link>
     </div>
