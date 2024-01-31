@@ -41,6 +41,11 @@ export const routes = [
         name: 'InfoActor',
         component: () => import('../components/InfoActor.vue')
     },
+    {
+        path: '/moovieByCategorie/:idCategorie',
+        name: 'MoovieByCategorie',
+        component: () => import('../components/MoovieByCategorie.vue')
+    }
 ]
 
 const router = createRouter({
