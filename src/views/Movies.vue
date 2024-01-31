@@ -12,7 +12,7 @@ onMounted(async () => {
     const response = await axios.get(`${baseURL}movies?page=1`);
     movies.value = response.data;
     isLoading.value = false;
-   } catch (error) {
+  } catch (error) {
     console.error(error);
   }
 });
@@ -22,9 +22,16 @@ onMounted(async () => {
 <template>
 
   <div class="listing">
-    <div v-if="isLoading" class="loading"><img src="../assets/loader.gif"></div>
+    <div class="loading" v-if="isLoading">
+      <v-progress-circular
+          v-if="isLoading"
+          indeterminate
+          color="#FFDEADFF"
+      ></v-progress-circular>
+    </div>
     <div class="cases">
-      <router-link class="listing-link case" v-for="movie in movies['hydra:member']" :key="movie.id" :to="{ name: 'InfoFilm', params: { idFilm: movie.id } }">
+      <router-link class="listing-link case" v-for="movie in movies['hydra:member']" :key="movie.id"
+                   :to="{ name: 'InfoFilm', params: { idFilm: movie.id } }">
         {{ movie.title }}
       </router-link>
     </div>

@@ -32,20 +32,34 @@ onMounted(async () => {
 
 <template>
 
-    <p class="divider">FILMS</p>
-    <div class="listing">
-      <div v-if="isLoading" class="loading"><img src="../assets/loader.gif"></div>
-      <div class="cases">
-        <router-link class="listing-link case" v-for="movie in movies['hydra:member']" :key="movie.id" :to="{ name: 'InfoFilm', params: { idFilm: movie.id } }">
-          {{ movie.title }}
-        </router-link>
-      </div>
+  <p class="divider">FILMS</p>
+  <div class="listing">
+    <div class="loading" v-if="isLoading">
+      <v-progress-circular
+          v-if="isLoading"
+          indeterminate
+          color="#FFDEADFF"
+      ></v-progress-circular>
     </div>
+    <div class="cases">
+      <router-link class="listing-link case" v-for="movie in movies['hydra:member']" :key="movie.id"
+                   :to="{ name: 'InfoFilm', params: { idFilm: movie.id } }">
+        {{ movie.title }}
+      </router-link>
+    </div>
+  </div>
   <p class="divider">ACTEURS</p>
   <div class="listing">
-    <div v-if="isLoading" class="loading"><img src="../assets/loader.gif"></div>
+    <div class="loading" v-if="isLoading">
+      <v-progress-circular
+          v-if="isLoading"
+          indeterminate
+          color="#FFDEADFF"
+      ></v-progress-circular>
+    </div>
     <div class="cases">
-      <router-link class="listing-link case" v-for="actor in actors['hydra:member']" :key="actor.id" :to="{ name: 'InfoActor', params: { idActor: actor.id } }">
+      <router-link class="listing-link case" v-for="actor in actors['hydra:member']" :key="actor.id"
+                   :to="{ name: 'InfoActor', params: { idActor: actor.id } }">
         {{ actor.firstName }} {{ actor.lastName }}
       </router-link>
     </div>

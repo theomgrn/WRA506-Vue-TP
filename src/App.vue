@@ -4,7 +4,11 @@ import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router';
 import { routes } from './router';
 
 const dynamicRoutes = routes.filter(route => {
-  if (!route.name.startsWith('Info') && !route.name.startsWith('Compte') && !route.name.startsWith('Connexion')) {
+  if (!route.name.startsWith('Info')
+      && !route.name.startsWith('Compte')
+      && !route.name.startsWith('Connexion')
+      && !route.name.startsWith('MoovieByCategorie'))
+  {
     return route.name;
   }
 });

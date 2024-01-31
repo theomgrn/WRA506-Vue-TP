@@ -49,8 +49,9 @@ button:focus-visible {
 }
 
 .loading{
-  text-align: center;
-  margin: 3rem 0 3rem 0;
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0 0 0;
 }
 
 .loading img{

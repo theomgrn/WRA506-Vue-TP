@@ -22,7 +22,8 @@ const convertMinutesToHours = (minutes) => {
 
 onMounted(async () => {
   try {
-    const response = await axios.get(`${baseURL}movies/${route.params.idFilm}`);  // Corrected from route.params.id
+    const response = await axios.get(`${baseURL}movies/${route.params.idFilm}`);
+    console.log(response.data);
     movie.value = response.data;
     isLoading.value = false;
   } catch (error) {
@@ -37,7 +38,6 @@ onMounted(async () => {
   <v-card
       class="mx-auto"
       max-width="344"
-      hover
   >
     <v-card-item>
       <v-card-title>
