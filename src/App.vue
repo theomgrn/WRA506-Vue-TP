@@ -100,7 +100,7 @@ nav {
   color: white;
   margin: 0 10px;
   text-transform: uppercase;
-  --c:linear-gradient(navajowhite 0 0);
+  --c: linear-gradient(to bottom, navajowhite 0%, navajowhite 100%);
   padding-bottom: .15em;
   background: var(--c), var(--c);
   background-size: .3em .1em;
