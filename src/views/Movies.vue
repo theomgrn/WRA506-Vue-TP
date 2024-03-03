@@ -1,16 +1,19 @@
 <script setup>
 import {onMounted, ref} from 'vue'
 import axios from 'axios'
-import {baseURL} from '../config.js'
+import {baseURL, baseURLimg} from '../config.js'
 import {RouterLink} from "vue-router";
 
 let isLoading = ref(true);
 let movies = ref([]);
+let movie;
+
 
 onMounted(async () => {
   try {
     const response = await axios.get(`${baseURL}movies?page=1`);
     movies.value = response.data;
+    console.log(movies.value);
     isLoading.value = false;
   } catch (error) {
     console.error(error);
@@ -32,7 +35,10 @@ onMounted(async () => {
     <div class="cases">
       <router-link class="listing-link case" v-for="movie in movies['hydra:member']" :key="movie.id"
                    :to="{ name: 'InfoFilm', params: { idFilm: movie.id } }">
-        {{ movie.title }}
+        <div class="card-cover">
+          <img :src="baseURLimg + mediaObject.filePath" alt="cover" class="cover" v-for="mediaObject in movie.mediaObjects" :key="mediaObject.id">
+          <p>{{ movie.title }}</p>
+        </div>
       </router-link>
     </div>
   </div>

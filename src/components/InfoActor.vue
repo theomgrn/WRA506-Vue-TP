@@ -33,17 +33,21 @@ onMounted(async () => {
           {{ actor.firstName }} {{ actor.lastName }}
         </v-card-title>
         <v-card-subtitle>
-          {{ actor.nationality.name }}
+          <u>Nationalité</u> : {{ actor.nationality.name }}
         </v-card-subtitle>
       </v-card-item>
 
-      <v-card-text>
-       test
-      </v-card-text>
+<!--      <v-card-text>-->
+<!--       test-->
+<!--      </v-card-text>-->
     </v-card>
   </div>
   <div class="loading" v-else>
-    <img src="../assets/loader.gif">
+    <v-progress-circular
+        v-if="isLoading"
+        indeterminate
+        color="#FFDEADFF"
+    ></v-progress-circular>
   </div>
 </template>
 

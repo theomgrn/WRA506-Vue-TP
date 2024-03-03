@@ -23,8 +23,8 @@ const convertMinutesToHours = (minutes) => {
 onMounted(async () => {
   try {
     const response = await axios.get(`${baseURL}movies/${route.params.idFilm}`);
-    console.log(response.data);
     movie.value = response.data;
+    console.log(movie.value);
     isLoading.value = false;
   } catch (error) {
     console.error(error);
@@ -43,18 +43,39 @@ onMounted(async () => {
       <v-card-title>
         {{ movie.title }} ({{ convertMinutesToHours(movie.duration) }})
       </v-card-title>
-      <v-card-subtitle>
-        Sortie : {{ formatDate(movie.releaseDate) }}
+      <v-card-subtitle class="custom-card-subtitle">
+        <u>Sortie</u> : {{ formatDate(movie.releaseDate) }}
+        <br>
+        <u>Catégorie</u> : {{ movie.category.name }}
+        <br>
+        <p v-if="movie.actor && movie.actor.length > 0">
+          <u>Acteurs</u> :
+          <span v-for="(actor, index) in movie.actor" :key="actor['@id']">
+          {{ actor.firstName }} {{ actor.lastName }}
+          <span v-if="index < movie.actor.length - 1"> / </span>
+        </span>
+        </p>
       </v-card-subtitle>
     </v-card-item>
-
     <v-card-text>
       {{ movie.description }}
     </v-card-text>
+    <div class="btn-block">
+      <v-btn color="#242424">
+        supprimer
+      </v-btn>
+      <v-btn>
+        modifier
+      </v-btn>
+    </div>
   </v-card>
   </div>
   <div class="loading" v-else>
-    <img src="../assets/loader.gif">
+    <v-progress-circular
+        v-if="isLoading"
+        indeterminate
+        color="#FFDEADFF"
+    ></v-progress-circular>
   </div>
 </template>
 
@@ -65,4 +86,10 @@ onMounted(async () => {
   align-items: center;
 }
 
+.btn-block{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1em;
+}
 </style>
