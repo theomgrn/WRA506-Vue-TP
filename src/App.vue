@@ -27,6 +27,7 @@ const logout = () => {
   localStorage.removeItem('userMail');
   isAuthenticated.value = false;
   user.value = '';
+  window.location.reload();
 };
 
 onMounted(() => {
@@ -55,6 +56,7 @@ router.beforeEach((to, from, next) => {
       <nav>
         <router-link
             class="link-nav-main"
+            v-if="isAuthenticated"
             v-for="route in dynamicRoutes"
             :key="route.name"
             :to="{ name: route.name}"

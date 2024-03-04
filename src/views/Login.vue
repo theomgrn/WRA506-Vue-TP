@@ -13,8 +13,17 @@ export default {
     userName: '',
     password: '',
   }),
-
+  mounted() {
+    this.checkUserToken();
+  },
   methods: {
+    checkUserToken() {
+      const userToken = localStorage.getItem('userToken');
+      if (!userToken) {
+        const toast = useToast();
+        toast.error('Vous devez être connecté pour accéder à l\'application');
+      }
+    },
     async submit() {
       this.loading = true;
       try {
@@ -69,6 +78,7 @@ export default {
           v-model="password"
           :rules="rules"
           label="Mot de passe"
+          type="password"
       ></v-text-field>
       <v-btn
           :loading="loading"

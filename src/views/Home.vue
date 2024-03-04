@@ -12,7 +12,6 @@ onMounted(async () => {
   try {
     const response = await axios.get(`${baseURL}movies?page=1&itemsPerPage=4&order[releaseDate]=desc`);
     movies.value = response.data;
-    console.log(movies.value);
     isLoading.value = false;
   } catch (error) {
     console.error(error);

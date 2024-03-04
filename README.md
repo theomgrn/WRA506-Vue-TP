@@ -29,7 +29,7 @@
 - [ ] Pagination
 - [ ] Barre de recherche
 - [ ] Opérations CRUD
-- [ ] Connexion utilisateur
+- [x] Connexion utilisateur
 - [ ] Modifier les informations de profil utilisateur
 - [ ] Film Online/Offline
 - [ ] Vich uploader
@@ -38,3 +38,6 @@
 ## Aide
 [Commandes / Point API / Connexion / Explications] 
 
+Account : 
+username: user@mail.com
+password: test

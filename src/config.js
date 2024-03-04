@@ -1,6 +1,8 @@
 // config.js
 
 import axios from "axios";
+import {useToast} from 'vue-toast-notification';
+import {resolveDirective} from "vue";
 
 let baseURL = 'http://localhost:8888/WRA506-Symfony/public/index.php/api/';
 let baseURLimg = 'http://localhost:8888/WRA506-Symfony/public/uploads/';
@@ -28,5 +30,20 @@ axios.interceptors.request.use(
     (error) => {
         return Promise.reject(error);
     });
+
+axios.interceptors.response.use(
+    (response) => {
+        return response;
+    },
+    (error) => {
+        if (error.response && error.response.status === 401) {
+            localStorage.removeItem('userToken');
+            localStorage.removeItem('userMail');
+            window.location.replace('/login');
+        }
+        return Promise.reject(error);
+    }
+);
+
 
 export { baseURL, baseURLimg, axiosConfig };

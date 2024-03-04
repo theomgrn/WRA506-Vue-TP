@@ -13,7 +13,6 @@ onMounted(async () => {
   try {
     const response = await axios.get(`${baseURL}movies?page=1`);
     movies.value = response.data;
-    console.log(movies.value);
     isLoading.value = false;
   } catch (error) {
     console.error(error);
