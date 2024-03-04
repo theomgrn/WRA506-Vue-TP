@@ -50,7 +50,9 @@ export const routes = [
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
+    // history: createWebHistory(`/moviesApp`),
     routes,
+    // base: `/moviesApp`,
 })
 
 export default router

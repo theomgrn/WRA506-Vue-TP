@@ -4,8 +4,8 @@ import axios from "axios";
 import {useToast} from 'vue-toast-notification';
 import {resolveDirective} from "vue";
 
-let baseURL = 'http://localhost:8888/WRA506-Symfony/public/index.php/api/';
-let baseURLimg = 'http://localhost:8888/WRA506-Symfony/public/uploads/';
+let baseURL = import.meta.env.VITE_API_URI;
+let baseURLimg = import.meta.env.VITE_UPLOADS_URI;
 
 // Fonction pour récupérer le token JWT du stockage local
 const getToken = () => {

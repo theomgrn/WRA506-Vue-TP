@@ -24,7 +24,6 @@ onMounted(async () => {
   try {
     const response = await axios.get(`${baseURL}movies/${route.params.idFilm}`);
     movie.value = response.data;
-    console.log(movie.value);
     isLoading.value = false;
   } catch (error) {
     console.error(error);
