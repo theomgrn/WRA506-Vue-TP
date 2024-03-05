@@ -51,7 +51,7 @@ export default {
       const config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: `${baseURL}/login_check`,
+        url: `${baseURL}login_check`,
         headers: {
           'Content-Type': 'application/json'
         },
