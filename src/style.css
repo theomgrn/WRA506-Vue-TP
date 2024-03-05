@@ -71,6 +71,7 @@ button:focus-visible {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: black;
   gap: 1em;
   img{
     width: 150px;
@@ -84,22 +85,22 @@ button:focus-visible {
   text-align: center;
   margin: 10px;
   padding: 20px;
-  background-color: black;
+  color: black;
+  background-color: white;
+}
+
+.case:hover {
+  background-color: #939393;
+  transition: 500ms;
 }
 
 .custom-card-subtitle {
   white-space: initial !important;
 }
 
-.case:hover {
-  background-color: navajowhite;
-  color: black;
-  transition: 500ms;
-}
-
 .listing-link {
   text-decoration: none;
-  color: white;
+  color: black;
   transition: color 0.3s ease-in-out; /* Animation de transition de la couleur */
   border-radius: 10px;
 }
