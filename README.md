@@ -1,6 +1,7 @@
 ## A Savoir
-[Dernière maj sur la branch develop]
-La mise en production n'a pas été réalisée efficacement, ce qui a entraîné l'apparition de nombreuses erreurs. Pour cette raison, l'application devra être testée en local.
+[PRODUCTION]
+https://front.theomgrn.fr/
+
 
 ## Commandes
 [Clone Symfony]
