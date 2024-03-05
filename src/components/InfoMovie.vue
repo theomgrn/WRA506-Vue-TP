@@ -59,14 +59,6 @@ onMounted(async () => {
     <v-card-text>
       {{ movie.description }}
     </v-card-text>
-    <div class="btn-block">
-      <v-btn color="#242424">
-        supprimer
-      </v-btn>
-      <v-btn>
-        modifier
-      </v-btn>
-    </div>
   </v-card>
   </div>
   <div class="loading" v-else>
@@ -83,12 +75,5 @@ onMounted(async () => {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.btn-block{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 1em;
 }
 </style>
