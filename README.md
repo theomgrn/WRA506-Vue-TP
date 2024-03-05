@@ -1,7 +1,7 @@
 ## A Savoir
-[Variable d'environnement]
-
+[Dernière maj sur la branch develop]
 La mise en production n'a pas été réalisée efficacement, ce qui a entraîné l'apparition de nombreuses erreurs. Pour cette raison, l'application devra être testée en local.
+
 ## Commandes
 [Clone Symfony]
 ```
@@ -10,8 +10,8 @@ git@github.com:theomgrn/WRA506-Symfony.git
 ```
 [Clone Vue]
 ```
-VITE_API_URI=http://localhost:8888/WRA506-Symfony/public/index.php/api/
-VITE_UPLOADS_URI=http://localhost:8888/WRA506-Symfony/public/uploads/
+https://github.com/theomgrn/WRA506-Vue-TP.git
+git@github.com:theomgrn/WRA506-Vue-TP.git
 ```
 [Génération des clés JWT]
 ```
