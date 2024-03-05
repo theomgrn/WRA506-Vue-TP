@@ -1,43 +1,43 @@
-## Sujet
+## A Savoir
+[Variable d'environnement]
 
-- [x] HomePage :
-  - Affiche les 4 derniers films ajoutés
-  - Au clic sur un film, affiche la page de détail avec les informations sur le film et la liste des acteurs
-  - Affiche les 4 acteurs principaux
-  - Au clic sur un acteur, affiche la page de détail avec les informations sur l'acteur et la liste des films dans lesquels il a joué
-
-- [x] Liste de films :
-  - Pagination pour naviguer entre les pages
-  - Barre de recherche pour filtrer les films par titre, catégorie, etc.
-  - Opérations CRUD pour gérer les films (créer, lire, mettre à jour, supprimer)
-
-- [x] Liste d'acteurs :
-  - Pagination pour naviguer entre les pages
-  - Barre de recherche pour filtrer les acteurs par nom, nationalité, etc.
-  - Opérations CRUD pour gérer les acteurs (créer, lire, mettre à jour, supprimer)
-
-- [x] Liste de catégories :
-  - Pagination pour naviguer entre les pages
-  - Barre de recherche pour trouver des catégories spécifiques
-  - Opérations CRUD pour gérer les catégories (créer, lire, mettre à jour, supprimer)
-
-- [x] User / Login :
-  - Page de connexion pour les utilisateurs
-  - Possibilité de modifier les informations de profil utilisateur
-
-## TODO
-- [ ] Pagination
-- [ ] Barre de recherche
-- [ ] Opérations CRUD
-- [x] Connexion utilisateur
-- [ ] Modifier les informations de profil utilisateur
-- [ ] Film Online/Offline
-- [ ] Vich uploader
-
+La mise en production n'a pas été réalisée efficacement, ce qui a entraîné l'apparition de nombreuses erreurs. Pour cette raison, l'application devra être testée en local.
+## Commandes
+[Clone Symfony]
+```
+https://github.com/theomgrn/WRA506-Symfony.git
+git@github.com:theomgrn/WRA506-Symfony.git
+```
+[Clone Vue]
+```
+VITE_API_URI=http://localhost:8888/WRA506-Symfony/public/index.php/api/
+VITE_UPLOADS_URI=http://localhost:8888/WRA506-Symfony/public/uploads/
+```
+[Génération des clés JWT]
+```
+php bin/console lexik:jwt:generate-keypair
+```
+[Créer la base de donnée - Mise à jour]
+```
+php bin/console d:d:c
+php bin/console d:s:u -f
+```
+[Mise en place des fixtures]
+```
+php bin/console d:f:l
+```
 
 ## Aide
-[Commandes / Point API / Connexion / Explications] 
+[Variable d'environnement] 
+```
+VITE_API_URI=http://localhost:8888/WRA506-Symfony/public/index.php/api/
+VITE_UPLOADS_URI=http://localhost:8888/WRA506-Symfony/public/uploads/
+```
 
-Account : 
+[Compte ADMIN pour effectuer les reqête API] 
+
+Aucune page a part celle du login n'est visible ou accessible avant la connexion de l'utilisateur
+```
 username: user@mail.com
 password: test
+```
