@@ -2,6 +2,7 @@
 import axios from 'axios';
 import router from "../router/index.js";
 import {useToast} from 'vue-toast-notification';
+import {baseURL} from "../config.js";
 
 export default {
   data: vm => ({
@@ -50,7 +51,7 @@ export default {
       const config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: 'http://localhost:8888/WRA506-Symfony/public/index.php/api/login_check',
+        url: `${baseURL}/login_check`,
         headers: {
           'Content-Type': 'application/json'
         },
